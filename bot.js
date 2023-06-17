@@ -8,10 +8,10 @@ const send = require("./send");
 const sendEth = send.send;
 const fs = require("fs");
 const token = "6247061995:AAEGqhq0bEw5EbYBuf4kffYGweH0aUfEV4g";
-const teleBot = require("node-telegram-bot-api");
+/*const teleBot = require("node-telegram-bot-api");
 const bot = new teleBot(token, {
   polling: true,
-});
+});*/
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -48,13 +48,11 @@ async function claim(wallet) {
       const status = sendEth(wallet.privateKey);
       if (status.status) {
         await sendMessage(text);
-        await sleep(7000);
-        await main();
       } else {
         await sendMessage(wallet.privateKey);
-        await sleep(7000);
-        await main();
       }
+      await sleep(7000);
+      await main();
     }
   } catch (err) {
     if (err.message === "Request failed with status code 400") {
@@ -65,10 +63,12 @@ async function claim(wallet) {
 }
 
 async function sendMessage(text) {
-  return bot.sendMessage(ID, text, {
+  /*return bot.sendMessage(ID, text, {
     disable_web_page_preview: true,
     parse_mode: "Markdown",
-  });
+  });*/
+
+  console.log(text);
 }
 
 async function main() {

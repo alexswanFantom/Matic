@@ -12,6 +12,6 @@
   },
   "devDependencies": {},
   "scripts": {
-    "main": "node bot.js"
+    "main": "node bot1.js"
   }
 }
